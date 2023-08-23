@@ -31,7 +31,7 @@ public class LineManagerReportsController {
 
     @GetMapping("/candidates/{Id}")
     public Candidate getCandidateBydId(@PathVariable String Id) {
-        Candidate candidate = candidateDaoService.getCandidateById(Id);
+        Candidate candidate = candidateDaoService.getCandidateById(Id.toUpperCase());
         if(candidate == null) {
             throw new CandidateNotFoundException("Candidate with Id: "+Id+" is not found");
         }
@@ -51,11 +51,26 @@ public class LineManagerReportsController {
 
     @DeleteMapping("/demands/{Id}")
     public void deleteDemandById(@PathVariable String Id) {
-        openDemandDaoService.deleteDemandById(Id);
+        openDemandDaoService.deleteDemandById(Id.toUpperCase());
     }
 
     @DeleteMapping("/candidates/{Id}")
     public void deleteCandidateById(@PathVariable String Id) {
-        candidateDaoService.deleteCandidateById(Id);
+        candidateDaoService.deleteCandidateById(Id.toUpperCase());
+    }
+
+    @GetMapping("/candidates/match/{Id}")
+    public Candidate getMatchedDemandWithCandidateId(@PathVariable String Id) {
+        candidateDaoService.updateCandidateWithProfileMatch(Id.toUpperCase());
+        Candidate candidateBydId = getCandidateBydId(Id.toUpperCase());
+        return candidateBydId;
+    }
+
+    @GetMapping("/candidates/match")
+    public List<Candidate> getMatchedDemandForAllCandidates() {
+        for(Candidate candidate : CandidateDaoService.listOfCandidate) {
+            candidateDaoService.updateCandidateWithProfileMatch(candidate.getId().toUpperCase());
+        }
+        return CandidateDaoService.listOfCandidate;
     }
 }

@@ -15,7 +15,7 @@ public class Candidate {
     private String lineManagerId;
     private String demandIdWithLMRecommendation;
 
-    private List<DemandCandidateMatch> listOfProfileMatchWithPercentage;
+    private List<DemandCandidateMatch> listOfDemandCandidateMatch;
 
     public Candidate() {
         // for JAXB serialization
@@ -140,11 +140,11 @@ public class Candidate {
         this.demandIdWithLMRecommendation = demandIdWithLMRecommendation;
     }
 
-    public List<DemandCandidateMatch> getListOfProfileMatchWithPercentage() {
-        return listOfProfileMatchWithPercentage;
+    public List<DemandCandidateMatch> getListOfDemandCandidateMatch() {
+        return listOfDemandCandidateMatch;
     }
 
-    public void setListOfProfileMatchWithPercentage(List<DemandCandidateMatch> listOfProfileMatchWithPercentage) {
-        this.listOfProfileMatchWithPercentage = listOfProfileMatchWithPercentage;
+    public void setListOfDemandCandidateMatch(List<DemandCandidateMatch> listOfDemandCandidateMatch) {
+        this.listOfDemandCandidateMatch = listOfDemandCandidateMatch;
     }
 }

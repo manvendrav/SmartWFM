@@ -2,28 +2,43 @@ package com.netcracker.LineManagerModuleService.service;
 
 import com.netcracker.LineManagerModuleService.dao.Candidate;
 import com.netcracker.LineManagerModuleService.dao.Demand;
+import com.netcracker.LineManagerModuleService.dao.DemandCandidateMatch;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class ProfileMatcher {
 
-    public double getResourceToDemandMatchPercentage(Candidate candidate, Demand demand) {
-        return calculateMatchingPercentage(candidate, demand);
+    public void getMatchPercentageForAvailableDemands(Candidate candidate, List<Demand> demands) {
+        List<DemandCandidateMatch> listOfDemandCandidateMatch = new ArrayList<>();
+        for(Demand demand : demands) {
+            listOfDemandCandidateMatch.add(calculateMatchingPercentage(candidate, demand));
+        }
+        // TODO sort list of Candidate Match to limit top 5
+        candidate.setListOfDemandCandidateMatch(listOfDemandCandidateMatch);
     }
 
-    public double calculateMatchingPercentage(Candidate candidate, Demand demand) {
+    public DemandCandidateMatch calculateMatchingPercentage(Candidate candidate, Demand demand) {
+        DemandCandidateMatch demandCandidateMatch = new DemandCandidateMatch();
         List<String> candidateSkills = candidate.getSkillSet();
         int candidateExperience = candidate.getYearsOfExperience();
 
         List<String> requiredSkills = demand.getDesiredSkillSet();
         int requiredExperience = demand.getDesiredYearsOfExperience();
         double skillMatchPercentage = (double) countMatchingSkills(candidateSkills, requiredSkills) / requiredSkills.size() * 100;
-        double experienceMatchPercentage = (double) candidateExperience / requiredExperience * 100;
+        double experienceMatchPercentage  = 0.0;
+        if(candidateExperience > requiredExperience) {
+            experienceMatchPercentage = 100;
+        } else {
+            experienceMatchPercentage = (double) candidateExperience / requiredExperience * 100;
+        }
         double overallMatchingPercentage = (skillMatchPercentage + experienceMatchPercentage) / 2;
-
-        return overallMatchingPercentage;
+        demandCandidateMatch.setCandidateId(candidate.getId());
+        demandCandidateMatch.setDemandId(demand.getId());
+        demandCandidateMatch.setMatchPercentage(overallMatchingPercentage);
+        return demandCandidateMatch;
     }
 
     public int countMatchingSkills(List<String> candidateSkills, List<String> desiredSkills) {

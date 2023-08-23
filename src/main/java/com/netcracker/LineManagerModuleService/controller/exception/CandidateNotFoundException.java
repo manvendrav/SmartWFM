@@ -9,3 +9,4 @@ public class CandidateNotFoundException extends RuntimeException {
         super(message);
     }
 }
+

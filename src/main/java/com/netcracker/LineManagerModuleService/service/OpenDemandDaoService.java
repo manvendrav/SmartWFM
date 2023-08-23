@@ -15,7 +15,7 @@ public class OpenDemandDaoService {
 
     // // for testing purpose lets create a static arraylist of open demand
 
-    private static List<Demand> listOfDemands = new ArrayList<>();
+    public static List<Demand> listOfDemands = new ArrayList<>();
 
     static {
         Demand demand1 = new Demand("332xxd3", "DT", Arrays.asList("Java", "OPF"),
