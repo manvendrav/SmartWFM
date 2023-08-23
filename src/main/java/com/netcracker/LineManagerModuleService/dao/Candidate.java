@@ -19,7 +19,7 @@ public class Candidate {
     private String lineManagerId;
     private String demandIdWithLMRecommendation;
 
-    private List<DemandCandidateMatch> listOfDemandCandidateMatch;
+    //private List<DemandCandidateMatch> listOfDemandCandidateMatch;
 
     public Candidate() {
         // for JAXB serialization
@@ -144,11 +144,11 @@ public class Candidate {
         this.demandIdWithLMRecommendation = demandIdWithLMRecommendation;
     }
 
-    public List<DemandCandidateMatch> getListOfDemandCandidateMatch() {
+    /*public List<DemandCandidateMatch> getListOfDemandCandidateMatch() {
         return listOfDemandCandidateMatch;
     }
 
     public void setListOfDemandCandidateMatch(List<DemandCandidateMatch> listOfDemandCandidateMatch) {
         this.listOfDemandCandidateMatch = listOfDemandCandidateMatch;
-    }
+    }*/
 }

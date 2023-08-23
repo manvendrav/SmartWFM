@@ -59,7 +59,7 @@ public class LineManagerReportsController {
         candidateDaoService.deleteCandidateById(Id.toUpperCase());
     }
 
-    @GetMapping("/candidates/match/{Id}")
+    /*@GetMapping("/candidates/match/{Id}")
     public Candidate getMatchedDemandWithCandidateId(@PathVariable String Id) {
         candidateDaoService.updateCandidateWithProfileMatch(Id.toUpperCase());
         Candidate candidateBydId = getCandidateBydId(Id.toUpperCase());
@@ -72,5 +72,5 @@ public class LineManagerReportsController {
             candidateDaoService.updateCandidateWithProfileMatch(candidate.getId().toUpperCase());
         }
         return CandidateDaoService.listOfCandidate;
-    }
+    }*/
 }
