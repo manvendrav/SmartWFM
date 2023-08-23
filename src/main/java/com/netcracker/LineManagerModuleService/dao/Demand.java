@@ -1,8 +1,13 @@
 package com.netcracker.LineManagerModuleService.dao;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.util.List;
 
+@Entity
 public class Demand {
+    @Id
     private String Id;
     private String projectName;
     private List<String> desiredSkillSet;

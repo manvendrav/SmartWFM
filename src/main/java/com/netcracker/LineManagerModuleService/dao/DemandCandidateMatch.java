@@ -1,24 +1,34 @@
 package com.netcracker.LineManagerModuleService.dao;
 
-public class DemandCandidateMatch {
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-    private Demand demand;
-    private Candidate candidate;
+public class DemandCandidateMatch {
+    private String demandId;
+    @JsonIgnore
+    private String candidateId;
     private double matchPercentage;
 
-    public Demand getDemand() {
-        return demand;
+    public String getDemandId() {
+        return demandId;
     }
 
-    public void setDemand(Demand demand) {
-        this.demand = demand;
+    public void setDemandId(String demandId) {
+        this.demandId = demandId;
     }
 
-    public Candidate getCandidate() {
-        return candidate;
+    public String getCandidateId() {
+        return candidateId;
     }
 
-    public void setCandidate(Candidate candidate) {
-        this.candidate = candidate;
+    public void setCandidateId(String candidateId) {
+        this.candidateId = candidateId;
+    }
+
+    public double getMatchPercentage() {
+        return matchPercentage;
+    }
+
+    public void setMatchPercentage(double matchPercentage) {
+        this.matchPercentage = matchPercentage;
     }
 }
