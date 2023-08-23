@@ -2,6 +2,8 @@ package com.netcracker.LineManagerModuleService.service;
 
 import com.netcracker.LineManagerModuleService.controller.exception.CandidateNotFoundException;
 import com.netcracker.LineManagerModuleService.dao.Candidate;
+import com.netcracker.LineManagerModuleService.dao.Demand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,8 +15,10 @@ import java.util.stream.Collectors;
 @Component
 public class CandidateDaoService {
 
+    @Autowired
+    private ProfileMatcher profileMatcher;
     // for testing purpose lets create a static arraylist of available resource
-    private static List<Candidate> listOfCandidate = new ArrayList<>();
+    public static List<Candidate> listOfCandidate = new ArrayList<>();
 
     static {
         Candidate av1 = new Candidate("SAHA0216", "Sam", "Harper", "CPQ",
@@ -66,6 +70,11 @@ public class CandidateDaoService {
             throw new CandidateNotFoundException("Candidate with Id:"+Id+" does not exist");
         }
         listOfCandidate.remove(candidate);
+    }
+
+    public void updateCandidateWithProfileMatch(String Id) {
+        Candidate candidate = getCandidateById(Id);
+        profileMatcher.getMatchPercentageForAvailableDemands(candidate, OpenDemandDaoService.listOfDemands);
     }
 
     // TODO to save the resource in the DB
