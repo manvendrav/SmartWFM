@@ -47,7 +47,8 @@ public class CandidateDaoService {
     }
 
     public void save(Candidate candidate) {
-        listOfCandidate.add(candidate);
+        candidateRepository.save(candidate);
+        //listOfCandidate.add(candidate);
     }
 
     public Candidate getCandidateById(String Id) {
@@ -81,10 +82,10 @@ public class CandidateDaoService {
         listOfCandidate.remove(candidate);
     }
 
-    public void updateCandidateWithProfileMatch(String Id) {
+    /*public void updateCandidateWithProfileMatch(String Id) {
         Candidate candidate = getCandidateById(Id);
         profileMatcher.getMatchPercentageForAvailableDemands(candidate, OpenDemandDaoService.listOfDemands);
-    }
+    }*/
 
     // TODO to save the resource in the DB
 

@@ -1,8 +1,10 @@
 package com.netcracker.LineManagerModuleService.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.Id;
 
 public class DemandCandidateMatch {
+    @Id
     private String demandId;
     @JsonIgnore
     private String candidateId;

@@ -5,20 +5,11 @@ import com.netcracker.LineManagerModuleService.dao.Demand;
 import com.netcracker.LineManagerModuleService.dao.DemandCandidateMatch;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class ProfileMatcher {
 
-    public void getMatchPercentageForAvailableDemands(Candidate candidate, List<Demand> demands) {
-        List<DemandCandidateMatch> listOfDemandCandidateMatch = new ArrayList<>();
-        for(Demand demand : demands) {
-            listOfDemandCandidateMatch.add(calculateMatchingPercentage(candidate, demand));
-        }
-        // TODO sort list of Candidate Match to limit top 5
-        candidate.setListOfDemandCandidateMatch(listOfDemandCandidateMatch);
-    }
 
     public DemandCandidateMatch calculateMatchingPercentage(Candidate candidate, Demand demand) {
         DemandCandidateMatch demandCandidateMatch = new DemandCandidateMatch();
