@@ -1,10 +1,14 @@
 package com.netcracker.LineManagerModuleService.dao;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
+@Entity
 public class Candidate {
+    @Id
     private String Id;
     private String firstName;
     private String lastName;

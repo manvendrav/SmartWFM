@@ -4,13 +4,14 @@ import com.netcracker.LineManagerModuleService.controller.exception.DemandNotFou
 import com.netcracker.LineManagerModuleService.dao.Candidate;
 import com.netcracker.LineManagerModuleService.dao.Demand;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class OpenDemandDaoService {
 
     // // for testing purpose lets create a static arraylist of open demand

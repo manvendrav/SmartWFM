@@ -5,6 +5,7 @@ import com.netcracker.LineManagerModuleService.dao.Candidate;
 import com.netcracker.LineManagerModuleService.dao.Demand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,12 +13,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class CandidateDaoService {
 
     @Autowired
     private ProfileMatcher profileMatcher;
     // for testing purpose lets create a static arraylist of available resource
+    @Autowired
+    private CandidateRepository candidateRepository;
     public static List<Candidate> listOfCandidate = new ArrayList<>();
 
     static {
@@ -48,10 +51,16 @@ public class CandidateDaoService {
     }
 
     public Candidate getCandidateById(String Id) {
+        Optional<Candidate> candidateOptional = candidateRepository.findById(Id);
+        if(candidateOptional.isPresent())
+        {
+            return candidateOptional.get();
+        }/*
         return listOfCandidate.stream()
                 .filter(e -> e.getId().equals(Id))
                 .findFirst()
-                .orElse(null);
+                .orElse(null);*/
+        throw new CandidateNotFoundException("Candidate with Id: "+Id+" does not exist");
     }
 
     public List<Candidate> getListOfCandidateByYearsOfExperience(int yearOfExperience) {
