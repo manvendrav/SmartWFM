@@ -19,7 +19,6 @@ public class CandidateDaoService {
     @Autowired
     private ProfileMatcher profileMatcher;
     // for testing purpose lets create a static arraylist of available resource
-
     @Autowired
     private CandidateRepository candidateRepository;
     public static List<Candidate> listOfCandidate = new ArrayList<>();
